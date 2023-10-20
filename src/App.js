@@ -1,10 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import Invalid from './Invalid';
+import Lights from './Lights';
 
 function App() {
-  const[x, setX] = useState(3);
-  const[z, setZ] = useState(5);
+  const[green, setGreen] = useState(3);
+  const[yellow, setYellow] = useState(2);
+  const[red, setRed] = useState(5);
   const[seconds, setSeconds] = useState(0);
   const[error, setError] = useState(false)
   useEffect(() => {
@@ -15,59 +17,31 @@ function App() {
     return () => clearInterval(interval); //cleanup function
   }, []);
   useEffect(() => {
-    let yellow = z-x;
-    if (yellow <=0 || z <= 0 || x <= 0){
+    if (parseFloat(yellow) !== parseFloat(red-green) || yellow <=0 || red <= 0 || green <= 0){
       setError(true)
     } else {
       setError(false)
     }
-  }, [z, x])
+  }, [red, yellow, green])
   return (
     <div className="App">
       <div className="inputGroup">
         <label>
-          Green time: <input name="xInput" type="text" value={x} onChange={(e) => setX(e.target.value)}/>
+          Green time sg (x): <input name="greenInput" type="text" value={green} onChange={(e) => setGreen(e.target.value)}/>
         </label>
         <label>
-          Red time:  <input name="zInput" type="text" value={z} onChange={(e) => setZ(e.target.value)}/>
+          Yellow time (y): <input name="yellowInput" type="text" value={yellow} onChange={(e) => setYellow(e.target.value)}/>
+        </label>
+        <label>
+          Red time (z):  <input name="redInput" type="text" value={red} onChange={(e) => setRed(e.target.value)}/>
         </label>
       </div>
       <div className="inputGroup">
         Seconds: {seconds}
       </div>
       {error 
-        ? <div>invalid times</div>
-        :<div class="gridContainer">
-        <div class="gridItem"></div>
-        {(seconds%(z*2)) >= z 
-          ? <div class="gridItem red"></div>
-          : (seconds%(z*2)) < x 
-            ? <div class="gridItem green"></div>
-            : <div class="gridItem yellow"></div>
-        }
-        <div class="gridItem"></div>
-        {(seconds%(z*2)) < z 
-          ? <div class="gridItem red"></div>
-          : (seconds%(z*2)) < z+x 
-            ? <div class="gridItem green"></div>
-            : <div class="gridItem yellow"></div>
-        }
-        <div class="gridItem"></div>
-        {(seconds%(z*2)) < z 
-          ? <div class="gridItem red"></div>
-          : (seconds%(z*2)) < z+x 
-            ? <div class="gridItem green"></div>
-            : <div class="gridItem yellow"></div>
-        }
-        <div class="gridItem"></div>
-        {(seconds%(z*2)) >= z 
-          ? <div class="gridItem red"></div>
-          : (seconds%(z*2)) < x 
-            ? <div class="gridItem green"></div>
-            : <div class="gridItem yellow"></div>
-        }
-        <div class="gridItem"></div>
-      </div>
+        ? <Invalid />
+        : <Lights red={red} green={green} seconds={seconds} />
       }
       
     </div>

@@ -1,5 +1,6 @@
 # trafficlight
 CSDS 344 Project 1
+I made this project with React and HTML. Please `run npm` start to start up the project. 
 
 
 # Getting Started with Create React App

@@ -12,26 +12,46 @@ code {
     monospace;
 }
 
+label{
+  padding: 10px;
+}
+
 .gridContainer {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: grey;
-  padding: 10px;
+  background-color: #1e4d2b;
   margin: 2% 30% 10% 30%;
 }
 .gridItem {
-  background-color: grey;
-  padding: 20px;
-  font-size: 30px;
-  text-align: center;
-  border-radius: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1/1;  
+  overflow:hidden;
+  position:relative;
 }
 
+.lightContainer{
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  max-height: 32%;
+  margin: auto;
+}
+
+.traffic-container{
+  background-color: black;
+  border-radius:50px;
+  aspect-ratio:1/2;
+  max-height: 50%;
+  margin:auto;
+  padding: 1px;
+  display:block;
+  margin-top:20%;
+}
+
+.street{
+  background-color: #9A9A94;
+}
 .red{
   background-color:red;
   border: 1px solid rgba(0, 0, 0, 0.8);
-
 }
 .yellow{
   background-color:yellow;
@@ -41,8 +61,40 @@ code {
 .green{
   background-color:green;
   border: 1px solid rgba(0, 0, 0, 0.8);
+}
 
+.noLight{
+  background-color:white;
+  border: 1px solid rgba(0, 0, 0, 0.8);
 }
 .inputGroup{
   margin-top: 2%;
+}
+
+.invalid{
+  width: 80%;
+  background-color: red;
+  margin: auto;
+  font-size: 24px;
+  padding: 30px;
+  margin-top:10px;
+}
+
+.pedestrianLights{
+  width: 20%;
+  height:20%;
+  position:absolute;
+  border-radius: 30%;
+}
+.bottom{
+  bottom:0;
+}
+.top{
+  top: 0;
+}
+.left{
+  left: 0;
+}
+.right{
+  right: 0;
 }
